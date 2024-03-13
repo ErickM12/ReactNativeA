@@ -6,6 +6,7 @@ import HomeStack from "./stack/HomeStack";
 import FavoritesStack from "./stack/FavoritesStack";
 import AsesoriaStack from "./stack/AsesoriaStack";
 import { Icon } from "@rneui/base";
+import PushNotification from "../notifications/PushNotification";
 const Tab = createBottomTabNavigator();
 export default function Navigation() {
   return (
@@ -43,6 +44,11 @@ export default function Navigation() {
           component={AsesoriaStack}
           options={{ title: "Asesoria" }}
         />
+        <Tab.Screen
+          name="Notifications"
+          component={PushNotification}
+          options={{ title: "Notificaciones" }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -62,8 +68,11 @@ const getIconName = (routeName, focused) => {
     case "AuthStack":
       iconName = focused ? "account" : "account-outline";
       break;
-      case "AsesoriaStack":
+    case "AsesoriaStack":
       iconName = focused ? "pen" : "pencil-outline";
+      break;
+    case "Notifications":
+      iconName = focused ? "bell" : "bell-outline";
       break;
   }
   return { iconName, iconType };

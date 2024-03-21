@@ -15,11 +15,15 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "com.erickmm.restaurante",
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "Se necesita acceso a la cámara para tomar fotos",
         "NSPhotoLibraryUsageDescription": "Allow $(PRODUCT_NAME) to access your photos.",
         "NSPhotoLibraryAddUsageDescription": "Allow $(PRODUCT_NAME) to save photos."
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyA-o-gmyP0CkuxhoI9bVYTR__ervGdDm3g"
       }
     },
     "android": {
@@ -35,7 +39,12 @@
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.ACCESS_MEDIA_LOCATION"
       ],
-      "package": "com.erickmm.restaurante"
+      "package": "com.erickmm.restaurante",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAMzsjVMGpEioZ7IQuKx49e8lWIlWSuAro"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

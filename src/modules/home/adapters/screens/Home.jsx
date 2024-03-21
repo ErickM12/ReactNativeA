@@ -2,7 +2,9 @@ import { StyleSheet, View, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import FlatListRestaurants from "./components/FlatListRestaurants";
 import { collection, getFirestore, getDocs } from "firebase/firestore";
-export default function Home() {
+import Loading from "../../../../kernel/components/Loading";
+export default function Home(props) {
+  const { navigation } = props;
   const [restaurants, setRestaurants] = useState(null);
   const [showLoading, setShowLoading] = useState(true);
   useEffect(() => {
@@ -17,10 +19,12 @@ export default function Home() {
           description: doc.data()["description"],
           rating: doc.data()["rating"],
           image: doc.data()["image"],
+          longitude: doc.data()["longitude"],
+          latitude: doc.data()["latitude"],
         });
-        console.log("restaurantes", arrayRestaurants);
       });
       setRestaurants(arrayRestaurants);
+      setShowLoading(false);
     })();
   }, []);
   return (
@@ -33,10 +37,12 @@ export default function Home() {
             title={item.title}
             description={item.description}
             rating={item.rating}
+            action={() => navigation.navigate("RestaurantDetail", item)}
           />
         )}
         keyExtractor={(item) => item.id}
       />
+      <Loading visible={showLoading} title="Cargando restaurantes" />
     </View>
   );
 }
